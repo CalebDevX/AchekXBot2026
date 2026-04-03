@@ -1,0 +1,15 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "node index.js"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
+
+[environments.production.variables]
+NODE_ENV = "production"
+TZ = "Africa/Lagos"
+DATABASE_URL = "./bot.db"
+DISABLE_START_MESSAGE = "true"
+CMD_REACTION = "true"
+REJECT_CALL = "true"

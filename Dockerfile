@@ -1,14 +1,26 @@
-FROM node:22-alpine
+FROM node:20-alpine
 
-RUN apk add --no-cache git ffmpeg libwebp-tools python3 make g++
+# Install system dependencies needed by Baileys (ffmpeg, etc.)
+RUN apk add --no-cache ffmpeg git python3 make g++ libwebp-tools
 
-# Point this to YOUR NEW REPO
-ADD https://api.github.com/repos/CalebDevX/AchekXBot/git/refs/heads/main version.json
-RUN git clone -b main https://github.com/CalebDevX/AchekXBot /rgnk
+WORKDIR /app
 
-WORKDIR /rgnk
-RUN mkdir -p temp
+# Copy package files first (Docker layer caching)
+COPY package*.json ./
+
+# Install Node dependencies
+RUN npm install --legacy-peer-deps --omit=dev
+
+# Copy entire project
+COPY . .
+
+# Create sessions folder (persists auth between restarts)
+RUN mkdir -p sessions
+
+# Health-check port
+EXPOSE 5000
+
 ENV TZ=Africa/Lagos
-RUN npm install -g --force yarn pm2
-RUN yarn install
-CMD ["npm", "start"]
+ENV NODE_ENV=production
+
+CMD ["node", "index.js"]

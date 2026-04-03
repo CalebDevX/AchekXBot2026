@@ -1,18 +1,35 @@
 services:
   - type: web
-    name: AchekBot
-    runtime: docker
+    name: AchekXBot
+    runtime: node
     region: oregon
     plan: free
-    dockerfilePath: ./Dockerfile
+    buildCommand: npm install --legacy-peer-deps
+    startCommand: node index.js
     envVars:
       - key: SESSION
-        value: "RGNK~LaA1kdMI"
+        sync: false          # User must set this manually in the Render dashboard
       - key: DATABASE_URL
-        value: "postgresql://achekbot_user:NE4hoU6L9kH5YSrfTA1sa9YyBoFETbu0@dpg-d6avpcemcj7s73enu9d0-a/achekbot"
-      - key: SUDO
-        value: "2348096567473" # Put your phone number here (no + sign)
-      - key: STICKER_PACKNAME
-        value: "Caleb-MD"
-      - key: RENDER_DEPLOY_HOOK
-        value: ""
+        value: ./bot.db      # Uses local SQLite by default (free)
+      - key: BOT_NAME
+        value: AchekBot
+      - key: MODE
+        value: private
+      - key: HANDLERS
+        value: ".,/"
+      - key: REJECT_CALL
+        value: "true"
+      - key: CMD_REACTION
+        value: "true"
+      - key: DISABLE_START_MESSAGE
+        value: "true"
+      - key: PORT
+        value: "5000"
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Africa/Lagos
+    disk:
+      name: sessions
+      mountPath: /app/sessions
+      sizeGB: 1

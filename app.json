@@ -1,0 +1,72 @@
+{
+  "name": "AchekXBot",
+  "description": "AchekXBot - Multi-functional WhatsApp bot built with Baileys",
+  "repository": "https://github.com/CalebDevX/AchekXBot",
+  "keywords": ["whatsapp", "bot", "baileys", "achekbot"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ],
+  "env": {
+    "SESSION": {
+      "description": "Your Achek session key from https://session.achek.com.ng (format: ACHEK~XXXXXX)",
+      "required": true,
+      "value": ""
+    },
+    "DATABASE_URL": {
+      "description": "Database URL. Leave as ./bot.db to use SQLite (recommended for beginners).",
+      "required": false,
+      "value": "./bot.db"
+    },
+    "BOT_NAME": {
+      "description": "Your bot's display name",
+      "required": false,
+      "value": "AchekBot"
+    },
+    "MODE": {
+      "description": "Bot mode: 'private' (only you) or 'public' (everyone)",
+      "required": false,
+      "value": "private"
+    },
+    "SUDO": {
+      "description": "Your WhatsApp number without + (e.g. 2348000000000)",
+      "required": false,
+      "value": ""
+    },
+    "REJECT_CALL": {
+      "description": "Auto-reject incoming calls (true/false)",
+      "required": false,
+      "value": "true"
+    },
+    "CMD_REACTION": {
+      "description": "React with ⚡ when a command is triggered (true/false)",
+      "required": false,
+      "value": "true"
+    },
+    "DISABLE_START_MESSAGE": {
+      "description": "Disable startup notification message (true/false)",
+      "required": false,
+      "value": "true"
+    },
+    "GEMINI_API_KEY": {
+      "description": "Google Gemini API key for AI chatbot (optional, get free at https://aistudio.google.com/app/apikey)",
+      "required": false,
+      "value": ""
+    },
+    "TZ": {
+      "required": false,
+      "value": "Africa/Lagos"
+    },
+    "NODE_ENV": {
+      "required": false,
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  }
+}
