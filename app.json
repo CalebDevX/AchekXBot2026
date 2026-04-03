@@ -16,23 +16,23 @@
     },
     "DATABASE_URL": {
       "description": "Database URL. Leave as ./bot.db to use SQLite (recommended for beginners).",
-      "required": false,
+      "required": true,
       "value": "./bot.db"
     },
     "BOT_NAME": {
       "description": "Your bot's display name",
-      "required": false,
+      "required": true,
       "value": "AchekBot"
     },
     "MODE": {
       "description": "Bot mode: 'private' (only you) or 'public' (everyone)",
       "required": false,
-      "value": "private"
+      "value": "public"
     },
     "SUDO": {
       "description": "Your WhatsApp number without + (e.g. 2348000000000)",
       "required": false,
-      "value": ""
+      "value": "false"
     },
     "REJECT_CALL": {
       "description": "Auto-reject incoming calls (true/false)",
@@ -47,7 +47,7 @@
     "DISABLE_START_MESSAGE": {
       "description": "Disable startup notification message (true/false)",
       "required": false,
-      "value": "true"
+      "value": "false"
     },
     "GEMINI_API_KEY": {
       "description": "Google Gemini API key for AI chatbot (optional, get free at https://aistudio.google.com/app/apikey)",
