@@ -10,7 +10,7 @@ const http = require("http");
 
 // Load environment variables from .env file if it exists
 if (fs.existsSync("./config.env")) {
-  require("dotenv").config({ path: "./config.env" });
+  require("dotenv").config({ path: "./config.env", override: true });
 }
 
 const { suppressLibsignalLogs, ensureTempDir, TEMP_DIR, initializeKickBot, cleanupKickBot } = require("./core/helpers");
