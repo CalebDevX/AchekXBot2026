@@ -98,7 +98,7 @@ const sequelize = (() => {
 })();
 
 const SESSION_STRING = process.env.SESSION || process.env.SESSION_ID;
-const SESSION = SESSION_STRING ? SESSION_STRING.split(",").map((s) => s.split("~")[1].trim()) : [];
+const SESSION = SESSION_STRING ? SESSION_STRING.split(",").map((s) => s.trim()).filter(Boolean) : [];
 
 const settingsMenu = [
   { title: "PM antispam block", env_var: "PM_ANTISPAM" },

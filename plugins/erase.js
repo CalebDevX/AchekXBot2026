@@ -1,3 +1,4 @@
+const { Module } = require("../main");
 Module({
     pattern: "erase",
     fromMe: true,
